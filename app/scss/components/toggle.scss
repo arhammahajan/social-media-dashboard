@@ -1,40 +1,28 @@
 @use '../util/' as *;
 // https://codepen.io/SaraSoueidan/pen/jpBbrq/?editors=1100
 .toggle {
+    display: grid;
+    grid-template-columns: 1fr 3rem;
     border: none;
-    display: grid; // we declare this property here and not in the header file because it is related to the layout of the toggle itself which is is not related to the header in any way 
-    grid-template-columns: 1fr rem(60) 1fr;
-    grid-template-rows: repeat(2, 1fr);
-    gap: rem(4.8) rem(8);
     margin: 0;
     label {
+        font-weight: 700;
         font-size: rem(14);
-        align-self: center;
-        &[for="dark"]{
-            grid-column: 1 / 2;
-            justify-self: end;
+        color: var(--toggle);
+        &[for='dark'] {
+            line-height: rem(24);
+            margin-right: rem(13);
         }
-        &[for="system"]{
-            grid-column: 1 / 4;
-            grid-row: 2 / 3;
-            justify-self: center;
-            align-self: start;
-        }   
-        &[for="light"]{
-            grid-column: 3 / 4;
-        }       
     }
 
     &__wrapper { 
-        grid-column: 2 / 3;
         height: rem(24);
-        grid-row: 1 / 2;
         position: relative;
     }
     input[type="radio"]{
         margin: 0 rem(-2) 0 rem(-2);
         opacity: 0;
-        width: rem(20);
+        width: rem(24);
         height: rem(24);
 
         &:focus ~ .toggle__button {
@@ -49,9 +37,7 @@
         width: 100%;
         top: 0;
         height: 100%;
-        background: linear-gradient(
-            225deg, var(--toggle-bg-end) 0%, var(--toggle-bg-start) 98.02%
-        );
+        background: var(--toggle-bg);
         pointer-events: none;
     }
     &__button {
@@ -62,7 +48,7 @@
         border-radius: 50%;
         width: rem(18);
         height: rem(18);
-        background-color: var(--dark-bg);
+        background-color: var(--toggle-button);
         transition: all 150ms ease-in-out;
     }
     #light:checked ~ .toggle__button {
